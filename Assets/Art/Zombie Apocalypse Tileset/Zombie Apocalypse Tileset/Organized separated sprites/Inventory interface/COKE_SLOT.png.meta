@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      COKE_SLOT_0: -3203698370349515110
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1097,7 +1097,46 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      inventory_0: -4863336276314997047
+      inventory_1: -3860515135949180240
+      inventory_10: -5948282585747812326
+      inventory_11: 276814819640733396
+      inventory_12: -267251719090833575
+      inventory_13: 184947299614187853
+      inventory_14: 6552564986207930973
+      inventory_15: -8362602881052143106
+      inventory_16: -3202966353781376089
+      inventory_17: 5717860663560468995
+      inventory_18: 8152852456837299576
+      inventory_19: 9214527340654990288
+      inventory_2: -6734734834790175173
+      inventory_20: -3998773593875168313
+      inventory_21: 2666837487265513188
+      inventory_22: -1160798593736239838
+      inventory_23: -2761068690825735088
+      inventory_24: -7162530431733920896
+      inventory_25: 2173216817343420227
+      inventory_26: 731597103121526280
+      inventory_27: -1164294437156975824
+      inventory_28: 8459678078700780562
+      inventory_29: -4818608432900340472
+      inventory_3: -6618134905481563395
+      inventory_30: -6992208419261314058
+      inventory_31: 2910227987943114279
+      inventory_32: -7122326040208954192
+      inventory_33: -9063430530855137994
+      inventory_34: 736822331659017025
+      inventory_35: 5043099834948712012
+      inventory_36: -5838773367292261525
+      inventory_37: 6125006079264960131
+      inventory_38: 1219843128188549411
+      inventory_4: -3913403896141990040
+      inventory_5: -1393458340566893849
+      inventory_6: -3571245019227250870
+      inventory_7: 2451324180514708912
+      inventory_8: -5990679910767757089
+      inventory_9: 5821263585957794077
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

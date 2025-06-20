@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Zombie-Tileset---_0188_Capa-189_0: 2170735560142882918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

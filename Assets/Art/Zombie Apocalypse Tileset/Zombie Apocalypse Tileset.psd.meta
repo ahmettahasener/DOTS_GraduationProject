@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Zombie Apocalypse Tileset_0: -2650046047240367175
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
