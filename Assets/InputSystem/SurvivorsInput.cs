@@ -162,7 +162,7 @@ public partial class @SurvivorsInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""645c9ddb-9de6-4267-9860-69a1c93a9511"",
-                    ""path"": ""<Touchscreen>/delta/up"",
+                    ""path"": ""<Touchscreen>/touch0/startPosition/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -173,7 +173,7 @@ public partial class @SurvivorsInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""96d59522-e1c0-43d7-9a8c-454b996b9664"",
-                    ""path"": ""<Touchscreen>/delta/down"",
+                    ""path"": ""<Touchscreen>/touch0/startPosition/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -184,7 +184,7 @@ public partial class @SurvivorsInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""c29f5d08-bc14-4a44-9332-242b55b26eb1"",
-                    ""path"": ""<Touchscreen>/delta/left"",
+                    ""path"": ""<Touchscreen>/touch0/startPosition/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -195,7 +195,7 @@ public partial class @SurvivorsInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""d776be8e-597b-4820-9ab2-5d6890d12c6b"",
-                    ""path"": ""<Touchscreen>/delta/right"",
+                    ""path"": ""<Touchscreen>/touch0/startPosition/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
