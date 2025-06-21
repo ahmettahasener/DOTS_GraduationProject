@@ -16,7 +16,7 @@ TagManager:
   - PlayerAttack
   - Environment
   - Coin
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1538330873
+    locked: 0
+  - name: Ground
+    uniqueID: 1451300197
     locked: 0
   m_RenderingLayers:
   - Default
