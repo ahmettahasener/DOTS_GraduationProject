@@ -6,6 +6,7 @@ using Unity.Physics;
 using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine.UI;
+using TMG.Survivors;
 
 public struct PlayerTag : IComponentData { }
 

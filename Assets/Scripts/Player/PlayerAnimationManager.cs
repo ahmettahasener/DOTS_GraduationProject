@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Mathematics;
+using Unity.Physics;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
@@ -30,14 +32,41 @@ public class PlayerAnimationManager : MonoBehaviour
     void Update()
     {
         moveAmt = moveAction.ReadValue<Vector2>();
-        if (moveAmt.x > 0)
+        if(Mathf.Abs(moveAmt.x) >= Mathf.Abs(moveAmt.y))
         {
-            animator.SetFloat("Run", 1);
+            CleanAnim();
+            animator.SetBool("RunSide", true);
+            //if (moveAmt.x > 0)
+            //{
+            //    animator.SetBool("RunSide",true);
+            //}
+            //else if (moveAmt.x <= 0)
+            //{
+            //    animator.SetBool("RunSide", true);
+            //}
         }
-        else if (moveAmt.x <= 0)
+        else //y bigger than x
         {
-            animator.SetFloat("Run", 0);
+            if (moveAmt.y >= 0)
+            {
+                CleanAnim();
 
+                animator.SetBool("RunUp", true);
+            }
+            else if (moveAmt.y < 0)
+            {
+                CleanAnim();
+
+                animator.SetBool("RunDown", true);
+            }
         }
+    }
+
+    private void CleanAnim()
+    {
+        animator.SetBool("RunUp", false);
+        animator.SetBool("RunDown", false);
+        animator.SetBool("RunSide", false);
+        animator.SetBool("Idle", false);
     }
 }

@@ -33,25 +33,25 @@ namespace TMG.Survivors
             UpdateGemsCollectedText(0);
         }
 
-        private void OnEnable()
-        {
-            _quitButton.onClick.AddListener(OnQuitButton);
-            _pauseResumeButton.onClick.AddListener(OnResumeButton);
-            _pauseQuitButton.onClick.AddListener(OnQuitButton);
-        }
+        //private void OnEnable()
+        //{
+        //    _quitButton.onClick.AddListener(OnQuitButton);
+        //    _pauseResumeButton.onClick.AddListener(OnResumeButton);
+        //    _pauseQuitButton.onClick.AddListener(OnQuitButton);
+        //}
 
-        private void OnDisable()
-        {
-            _quitButton.onClick.RemoveAllListeners();
-            _pauseResumeButton.onClick.RemoveAllListeners();
-            _pauseQuitButton.onClick.RemoveAllListeners();
-        }
+        //private void OnDisable()
+        //{
+        //    _quitButton.onClick.RemoveAllListeners();
+        //    _pauseResumeButton.onClick.RemoveAllListeners();
+        //    _pauseQuitButton.onClick.RemoveAllListeners();
+        //}
 
-        private void Start()
-        {
-            _gameOverPanel.SetActive(false);
-            _pausePanel.SetActive(false);
-        }
+        //private void Start()
+        //{
+        //    _gameOverPanel.SetActive(false);
+        //    _pausePanel.SetActive(false);
+        //}
 
         private void Update()
         {

@@ -709,6 +709,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fee95f6dbe5c264a97c1eb0e0b93b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gemsCollectedText: {fileID: 1178048893}
+  _gameOverPanel: {fileID: 0}
+  _pausePanel: {fileID: 0}
+  _quitButton: {fileID: 0}
+  _pauseResumeButton: {fileID: 0}
+  _pauseQuitButton: {fileID: 0}
 --- !u!114 &509400740
 MonoBehaviour:
   m_ObjectHideFlags: 0
