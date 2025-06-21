@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 138639955}
   - component: {fileID: 138639954}
   - component: {fileID: 138639960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642b5e641b1c388419bcc590b3cbcb98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  HitPoints: 0
+  MoveSpeed: 5
+  HitPoints: 100
 --- !u!54 &138639955
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &138639956
@@ -283,10 +283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887b89e3d8c95604286dfffba0e14983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPrefab: {fileID: 0}
-  CooldownTime: 0
-  DetectionSize: 0
-  WorldUIPrefab: {fileID: 0}
+  AttackPrefab: {fileID: 8310932509042524898, guid: 95e24f95dd438ef41b9b9413bf08838d, type: 3}
+  CooldownTime: 0.1
+  DetectionSize: 10
+  WorldUIPrefab: {fileID: 8770127702380296962, guid: af7292a6fd6687845a57bba5cadc4abe, type: 3}
 --- !u!1 &205457138
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +299,8 @@ GameObject:
   - component: {fileID: 205457141}
   - component: {fileID: 205457140}
   - component: {fileID: 205457139}
+  - component: {fileID: 205457144}
+  - component: {fileID: 205457143}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Untagged
@@ -395,6 +397,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205457143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205457138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd61a8e74bb78ed469a287f479f47748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackDamage: 0
+  CooldownTime: 0
+  GemPrefab: {fileID: 0}
+--- !u!114 &205457144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205457138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642b5e641b1c388419bcc590b3cbcb98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 0
+  HitPoints: 0
 --- !u!1 &289019168
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +637,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.25, y: -3.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1282761203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1282761205}
+  - component: {fileID: 1282761204}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1282761204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282761203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3ed30561a591347b7cf95e12f972ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyPrefab: {fileID: 2801732151011611217, guid: a61d87d805c80ae4eae9492ffa4db70d, type: 3}
+  SpawnInterval: 0.06
+  SpawnDistance: 25
+  RandomSeed: 1337
+--- !u!4 &1282761205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282761203}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1164,3 +1243,4 @@ SceneRoots:
   - {fileID: 1989245337}
   - {fileID: 2138306264}
   - {fileID: 138639959}
+  - {fileID: 1282761205}

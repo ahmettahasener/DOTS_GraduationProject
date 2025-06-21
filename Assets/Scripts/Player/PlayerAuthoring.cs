@@ -231,8 +231,16 @@ public partial struct UpdateGemUISystem : ISystem
 {
     public void OnUpdate(ref SystemState state)
     {
+        // GameUIController.Instance'ýn null olup olmadýðýný kontrol edin
+        if (GameUIController.Instance == null)
+        {
+            //Debug.LogWarning("GameUIController.Instance is null. Skipping UpdateGemUISystem.");
+            return; // UI Controller henüz hazýr deðilse iþlemi yapma
+        }
+
         foreach (var (gemCount, shouldUpdateUI) in SystemAPI.Query<GemsCollectedCount, EnabledRefRW<UpdateGemUIFlag>>())
         {
+            // Hata alýnan satýr burasý. GameUIController.Instance'ýn null olmadýðýna emin olduktan sonra çaðýr.
             GameUIController.Instance.UpdateGemsCollectedText(gemCount.Value);
             shouldUpdateUI.ValueRW = false;
         }
@@ -244,8 +252,17 @@ public partial struct PlayerWorldUISystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+
+        // Yeni UI prefab'larýný instantiate etme
         foreach (var (uiPrefab, entity) in SystemAPI.Query<PlayerWorldUIPrefab>().WithNone<PlayerWorldUI>().WithEntityAccess())
         {
+            // uiPrefab.Value.Value'nin null olmadýðýndan emin olun
+            if (uiPrefab.Value.Value == null)
+            {
+                Debug.LogWarning($"PlayerWorldUIPrefab for entity {entity} is null. Cannot instantiate UI.");
+                continue; // Bir sonraki entity'ye geç
+            }
+
             var newWorldUI = Object.Instantiate(uiPrefab.Value.Value);
             ecb.AddComponent(entity, new PlayerWorldUI
             {
@@ -254,19 +271,38 @@ public partial struct PlayerWorldUISystem : ISystem
             });
         }
 
+        // Mevcut UI'larýn pozisyonunu ve saðlýk çubuðunu güncelleme
         foreach (var (transform, worldUI, currentHitPoints, maxHitPoints) in SystemAPI.Query<LocalToWorld, PlayerWorldUI, CharacterCurrentHitPoints, CharacterMaxHitPoints>())
         {
+            // Null kontrolü ekle
+            if (worldUI.CanvasTransform.Value == null)
+            {
+                Debug.LogWarning($"PlayerWorldUI for entity with transform at {transform.Position} has a null CanvasTransform. Skipping update.");
+                continue;
+            }
+
             worldUI.CanvasTransform.Value.position = transform.Position;
             var healthValue = (float)currentHitPoints.Value / maxHitPoints.Value;
+
+            // Null kontrolü ekle
+            if (worldUI.HealthBarSlider.Value == null)
+            {
+                Debug.LogWarning($"PlayerWorldUI for entity with transform at {transform.Position} has a null HealthBarSlider. Skipping update.");
+                continue;
+            }
             worldUI.HealthBarSlider.Value.value = healthValue;
         }
 
+        // LocalToWorld bileþeni olmayan UI'larý temizleme
         foreach (var (worldUI, entity) in SystemAPI.Query<PlayerWorldUI>().WithNone<LocalToWorld>().WithEntityAccess())
         {
+            // **Hata alýnan satýr burasý.**
+            // Yok etmeden önce CanvasTransform.Value'nin null olup olmadýðýný kontrol edin.
             if (worldUI.CanvasTransform.Value != null)
             {
                 Object.Destroy(worldUI.CanvasTransform.Value.gameObject);
             }
+            // Eðer CanvasTransform.Value null ise zaten yok edilmiþtir veya hiç oluþturulmamýþtýr, sorun yok.
 
             ecb.RemoveComponent<PlayerWorldUI>(entity);
         }
