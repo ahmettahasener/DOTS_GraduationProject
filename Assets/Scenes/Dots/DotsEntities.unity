@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackPrefab: {fileID: 8310932509042524898, guid: 95e24f95dd438ef41b9b9413bf08838d, type: 3}
   CooldownTime: 0.1
-  DetectionSize: 10
+  DetectionSize: 1
   WorldUIPrefab: {fileID: 8770127702380296962, guid: af7292a6fd6687845a57bba5cadc4abe, type: 3}
 --- !u!1 &205457138
 GameObject:

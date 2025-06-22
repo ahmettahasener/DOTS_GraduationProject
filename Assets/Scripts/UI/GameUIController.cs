@@ -12,6 +12,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _gemsCollectedText;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private Button _inGamePauseButton;
     [SerializeField] private Button _quitButton;
     [SerializeField] private Button _pauseResumeButton;
@@ -21,7 +22,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private GameObject fpsCanvas;
     [SerializeField] private TMP_Text _levelText;
-
+    [SerializeField] private UpgradeManager _upgradeManager;
 
     private bool _isPaused = false;
 
@@ -73,6 +74,8 @@ public class GameUIController : MonoBehaviour
     public void UpdateLevelText(float value)
     {
         _levelText.text = $"Level {value}";
+        //_upgradePanel.SetActive(true);
+        //UpgradePanelUI();
     }
 
     private void Update()
@@ -156,6 +159,6 @@ public class GameUIController : MonoBehaviour
 
     private void UpgradePanelUI()
     {
-
+        //_upgradeManager.ShowUpgradeOptions();
     }
 }
