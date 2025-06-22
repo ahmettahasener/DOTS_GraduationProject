@@ -112,7 +112,7 @@ public class MapController : MonoBehaviour
 		int rand = Random.Range(0, terrainChunks.Count);
 		latestChunk = Instantiate(terrainChunks[rand], noTerrainPosition, Quaternion.identity);
 		spawnedChunks.Add(latestChunk);
-		latestChunk.SetActive(true);
+		
     }
 
 	void ChunkOptimzer()
