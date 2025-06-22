@@ -1,4 +1,3 @@
-using TMG.Survivors;
 using Unity.Entities;
 using Unity.Transforms;
 

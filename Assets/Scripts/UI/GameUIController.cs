@@ -5,108 +5,129 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace TMG.Survivors
+public class GameUIController : MonoBehaviour
 {
-    public class GameUIController : MonoBehaviour
+    public static GameUIController Instance;
+
+    [SerializeField] private TextMeshProUGUI _gemsCollectedText;
+    [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private Button _inGamePauseButton;
+    [SerializeField] private Button _quitButton;
+    [SerializeField] private Button _pauseResumeButton;
+    [SerializeField] private Button _pauseQuitButton;
+    [SerializeField] private Button _newGameButton;
+    [SerializeField] private Slider _healthSlider;
+
+
+    private bool _isPaused = false;
+
+    private void Awake()
     {
-        public static GameUIController Instance;
-
-        [SerializeField] private TextMeshProUGUI _gemsCollectedText;
-        [SerializeField] private GameObject _gameOverPanel;
-        [SerializeField] private GameObject _pausePanel;
-        [SerializeField] private Button _quitButton;
-        [SerializeField] private Button _pauseResumeButton;
-        [SerializeField] private Button _pauseQuitButton;
-
-        private bool _isPaused = false;
-
-        private void Awake()
+        if (Instance != null && Instance != this)
         {
-            if (Instance != null && Instance != this)
-            {
-                Debug.LogWarning("Warning: Multiple instances of GameUIController detected. Destroying new instance", Instance);
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            UpdateGemsCollectedText(0);
+            Debug.LogWarning("Warning: Multiple instances of GameUIController detected. Destroying new instance", Instance);
+            Destroy(gameObject);
+            return;
         }
 
-        //private void OnEnable()
-        //{
-        //    _quitButton.onClick.AddListener(OnQuitButton);
-        //    _pauseResumeButton.onClick.AddListener(OnResumeButton);
-        //    _pauseQuitButton.onClick.AddListener(OnQuitButton);
-        //}
+        Instance = this;
+        UpdateGemsCollectedText(0);
+    }
 
-        //private void OnDisable()
-        //{
-        //    _quitButton.onClick.RemoveAllListeners();
-        //    _pauseResumeButton.onClick.RemoveAllListeners();
-        //    _pauseQuitButton.onClick.RemoveAllListeners();
-        //}
+    private void OnEnable()
+    {
+        _quitButton.onClick.AddListener(OnQuitButton);
+        _pauseResumeButton.onClick.AddListener(OnResumeButton);
+        _pauseQuitButton.onClick.AddListener(OnQuitButton);
+        _inGamePauseButton.onClick.AddListener(ToggleGamePause);
+        _newGameButton.onClick.AddListener(OnNewGameButton);
+    }
 
-        //private void Start()
-        //{
-        //    _gameOverPanel.SetActive(false);
-        //    _pausePanel.SetActive(false);
-        //}
+    private void OnDisable()
+    {
+        _quitButton.onClick.RemoveAllListeners();
+        _pauseResumeButton.onClick.RemoveAllListeners();
+        _pauseQuitButton.onClick.RemoveAllListeners();
+        _inGamePauseButton.onClick.RemoveAllListeners();
+        _newGameButton.onClick.RemoveAllListeners();
+    }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                ToggleGamePause();
-            }
-        }
+    //private void Start()
+    //{
+    //    _gameOverPanel.SetActive(false);
+    //    _pausePanel.SetActive(false);
+    //}
 
-        private void ToggleGamePause()
-        {
-            _isPaused = !_isPaused;
-            _pausePanel.SetActive(_isPaused);
-            SetEcsEnabled(!_isPaused);
-        }
+    public void UpdateHealthBar(float value)
+    {
+        _healthSlider.value = value;
+    }
 
-        private void SetEcsEnabled(bool shouldEnable)
-        {
-            var defaultWorld = World.DefaultGameObjectInjectionWorld;
-            if (defaultWorld == null) return;
-
-            var initializationSystemGroup = defaultWorld.GetExistingSystemManaged<InitializationSystemGroup>();
-            if (initializationSystemGroup != null)
-                initializationSystemGroup.Enabled = shouldEnable;
-
-            var simulationSystemGroup = defaultWorld.GetExistingSystemManaged<SimulationSystemGroup>();
-            if (simulationSystemGroup != null)
-                simulationSystemGroup.Enabled = shouldEnable;
-        }
-
-        public void UpdateGemsCollectedText(int gemsCollected)
-        {
-            _gemsCollectedText.text = $"{gemsCollected:N0}";
-        }
-
-        public void ShowGameOverUI()
-        {
-            StartCoroutine(ShowGameOverUICoroutine());
-        }
-
-        private IEnumerator ShowGameOverUICoroutine()
-        {
-            yield return new WaitForSeconds(1.5f);
-            _gameOverPanel.SetActive(true);
-        }
-
-        private void OnResumeButton()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleGamePause();
         }
+    }
 
-        private void OnQuitButton()
-        {
-            SetEcsEnabled(true); // ECS sistemlerini tekrar aktif et
-            SceneManager.LoadScene(0); // Ana sahneye dönüþ
-        }
+    private void ToggleGamePause()
+    {
+        _isPaused = !_isPaused;
+        _pausePanel.SetActive(_isPaused);
+        SetEcsEnabled(!_isPaused);
+    }
+
+    private void SetEcsEnabled(bool shouldEnable)
+    {
+        var defaultWorld = World.DefaultGameObjectInjectionWorld;
+        if (defaultWorld == null) return;
+
+        var initializationSystemGroup = defaultWorld.GetExistingSystemManaged<InitializationSystemGroup>();
+        if (initializationSystemGroup != null)
+            initializationSystemGroup.Enabled = shouldEnable;
+
+        var simulationSystemGroup = defaultWorld.GetExistingSystemManaged<SimulationSystemGroup>();
+        if (simulationSystemGroup != null)
+            simulationSystemGroup.Enabled = shouldEnable;
+    }
+
+    public void UpdateGemsCollectedText(int gemsCollected)
+    {
+        _gemsCollectedText.text = $"{gemsCollected:N0}";
+    }
+
+    public void ShowGameOverUI()
+    {
+        StartCoroutine(ShowGameOverUICoroutine());
+    }
+
+    private IEnumerator ShowGameOverUICoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _gameOverPanel.SetActive(true);
+    }
+
+    private void OnResumeButton()
+    {
+        ToggleGamePause();
+    }
+
+    private void OnQuitButton()
+    {
+        SetEcsEnabled(true); // ECS sistemlerini tekrar aktif et
+        SceneManager.LoadScene(0); // Ana sahneye dönüþ
+    }
+
+    private void OnInGamePauseButton()
+    {
+        ToggleGamePause();
+    }
+
+    private void OnNewGameButton()
+    {
+        SetEcsEnabled(true); // ECS sistemlerini tekrar aktif et
+        SceneManager.LoadScene(1); // Ana sahneye dönüþ
     }
 }

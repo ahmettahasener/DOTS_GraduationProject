@@ -6,7 +6,6 @@ using Unity.Physics;
 using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine.UI;
-using TMG.Survivors;
 
 public struct PlayerTag : IComponentData { }
 
@@ -309,5 +308,19 @@ public partial struct PlayerWorldUISystem : ISystem
         }
 
         ecb.Playback(state.EntityManager);
+    }
+}
+
+public partial struct UpdateHealthUISystem : ISystem
+{
+    public void OnUpdate(ref SystemState state)
+    {
+        if (GameUIController.Instance == null) return;
+
+        foreach (var (currentHP, maxHP) in SystemAPI.Query<CharacterCurrentHitPoints, CharacterMaxHitPoints>().WithAll<PlayerTag>())
+        {
+            //float value = math.clamp((float)currentHP.Value / maxHP.Value, 0f, 1f);
+            GameUIController.Instance.UpdateHealthBar(currentHP.Value);
+        }
     }
 }

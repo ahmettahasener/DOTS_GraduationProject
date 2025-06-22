@@ -149,59 +149,15 @@ public partial class @SurvivorsInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Touch"",
-                    ""id"": ""9837f575-a118-4d2d-9860-11075f575bbe"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""94939485-ea64-449f-94da-d016c8b58bcf"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""645c9ddb-9de6-4267-9860-69a1c93a9511"",
-                    ""path"": ""<Touchscreen>/touch0/startPosition/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""96d59522-e1c0-43d7-9a8c-454b996b9664"",
-                    ""path"": ""<Touchscreen>/touch0/startPosition/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""c29f5d08-bc14-4a44-9332-242b55b26eb1"",
-                    ""path"": ""<Touchscreen>/touch0/startPosition/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""d776be8e-597b-4820-9ab2-5d6890d12c6b"",
-                    ""path"": ""<Touchscreen>/touch0/startPosition/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }

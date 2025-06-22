@@ -32,7 +32,7 @@ public class PlayerAnimationManager : MonoBehaviour
     void Update()
     {
         moveAmt = moveAction.ReadValue<Vector2>();
-        if(Mathf.Abs(moveAmt.x) >= Mathf.Abs(moveAmt.y))
+        if(Mathf.Abs(moveAmt.x) > Mathf.Abs(moveAmt.y))
         {
             CleanAnim();
             animator.SetBool("RunSide", true);
@@ -45,9 +45,9 @@ public class PlayerAnimationManager : MonoBehaviour
             //    animator.SetBool("RunSide", true);
             //}
         }
-        else //y bigger than x
+        else if(Mathf.Abs(moveAmt.y) > Mathf.Abs(moveAmt.x))
         {
-            if (moveAmt.y >= 0)
+            if (moveAmt.y > 0)
             {
                 CleanAnim();
 
@@ -60,6 +60,10 @@ public class PlayerAnimationManager : MonoBehaviour
                 animator.SetBool("RunDown", true);
             }
         }
+        else
+        {
+            CleanAnim();
+        }
     }
 
     private void CleanAnim()
@@ -67,6 +71,6 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.SetBool("RunUp", false);
         animator.SetBool("RunDown", false);
         animator.SetBool("RunSide", false);
-        animator.SetBool("Idle", false);
+        //animator.SetBool("Idle", false);
     }
 }
