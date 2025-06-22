@@ -24,6 +24,17 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private UpgradeManager _upgradeManager;
 
+    public int currentCoins;
+
+    [System.Serializable]
+    public class WeaponUpgradeOption
+    {
+        public Sprite Icon;
+        public string Description;
+        public int Price;
+        public int WeaponIndex;
+    }
+
     private bool _isPaused = false;
 
     private void Awake()
@@ -75,7 +86,7 @@ public class GameUIController : MonoBehaviour
     {
         _levelText.text = $"Level {value}";
         //_upgradePanel.SetActive(true);
-        //UpgradePanelUI();
+        UpgradePanelUI();
     }
 
     private void Update()
@@ -86,10 +97,16 @@ public class GameUIController : MonoBehaviour
         }
     }
 
-    private void ToggleGamePause()
+    public void ToggleGamePause()
     {
         _isPaused = !_isPaused;
         _pausePanel.SetActive(_isPaused);
+        SetEcsEnabled(!_isPaused);
+    }
+
+    public void ToggleGameUpgrade()
+    {
+        _isPaused = !_isPaused;
         SetEcsEnabled(!_isPaused);
     }
 
@@ -110,6 +127,7 @@ public class GameUIController : MonoBehaviour
     public void UpdateGemsCollectedText(int gemsCollected)
     {
         _gemsCollectedText.text = $"{gemsCollected:N0}";
+        currentCoins = gemsCollected;
     }
 
     public void ShowGameOverUI()
@@ -160,5 +178,7 @@ public class GameUIController : MonoBehaviour
     private void UpgradePanelUI()
     {
         //_upgradeManager.ShowUpgradeOptions();
+        _upgradePanel.SetActive(true);
+        _upgradeManager.ShowUpgradePanel();
     }
 }

@@ -101,6 +101,7 @@ public class PlayerAuthoring : MonoBehaviour
             {
                 Value = authoring.WorldUIPrefab
             });
+
         }
     }
 }
@@ -260,3 +261,27 @@ public partial struct UpdateHealthUISystem : ISystem
         }
     }
 }
+
+[UpdateInGroup(typeof(InitializationSystemGroup))]
+public partial struct UpdatePlayerAttackPrefabSystem : ISystem
+{
+    public void OnUpdate(ref SystemState state)
+    {
+        if (!SystemAPI.TryGetSingletonEntity<SelectedWeapon>(out var managerEntity)) return;
+
+        var buffer = SystemAPI.GetBuffer<WeaponPrefabBuffer>(managerEntity);
+        var selected = SystemAPI.GetComponent<SelectedWeapon>(managerEntity);
+
+        var selectedPrefab = buffer[selected.Index].PrefabEntity;
+
+        foreach (var (attackData, entity) in SystemAPI.Query<RefRW<PlayerAttackData>>().WithAll<PlayerTag>().WithEntityAccess())
+        {
+            if (attackData.ValueRO.AttackPrefab != selectedPrefab)
+            {
+                attackData.ValueRW.AttackPrefab = selectedPrefab;
+            }
+        }
+    }
+}
+
+

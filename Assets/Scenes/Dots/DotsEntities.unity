@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 138639955}
   - component: {fileID: 138639954}
   - component: {fileID: 138639960}
+  - component: {fileID: 138639961}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -285,8 +286,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackPrefab: {fileID: 8310932509042524898, guid: 95e24f95dd438ef41b9b9413bf08838d, type: 3}
   CooldownTime: 0.1
-  DetectionSize: 1
+  DetectionSize: 10
   WorldUIPrefab: {fileID: 8770127702380296962, guid: af7292a6fd6687845a57bba5cadc4abe, type: 3}
+--- !u!114 &138639961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138639953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28cc29ead22c914388dabe4507099ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponPrefabs:
+  - {fileID: 8310932509042524898, guid: 95e24f95dd438ef41b9b9413bf08838d, type: 3}
+  - {fileID: 8310932509042524898, guid: c45485f7f53dbeb46a9ccc19f12f1758, type: 3}
+  - {fileID: 8310932509042524898, guid: 06f24f99cf529884e8ebd6ab185debb6, type: 3}
+  - {fileID: 8310932509042524898, guid: d36e9e63b19385a4285d891c3fa419c4, type: 3}
+  - {fileID: 8310932509042524898, guid: bd1fe61033fda2b4696de818aa405e5f, type: 3}
 --- !u!1 &205457138
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +700,7 @@ MonoBehaviour:
   SpawnDistance: 25
   RandomSeed: 1337
   WeightMultiplierPerLevel: 0.25
-  LevelIncreaseInterval: 15
+  LevelIncreaseInterval: 20
 --- !u!4 &1282761205
 Transform:
   m_ObjectHideFlags: 0
