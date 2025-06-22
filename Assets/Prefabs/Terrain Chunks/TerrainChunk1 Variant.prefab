@@ -2858,15 +2858,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4165590160754046681, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8086758
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165590160754046681, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2220526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165590160754046681, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.005085849
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165590160754046681, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2899,6 +2899,10 @@ PrefabInstance:
     - target: {fileID: 7695225476491494725, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
       propertyPath: m_Name
       value: TerrainChunk1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188446097024386731, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

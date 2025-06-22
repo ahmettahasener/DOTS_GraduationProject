@@ -11,7 +11,7 @@ public class MapController : MonoBehaviour
 	public Vector3 noTerrainPosition;
 	public LayerMask terrainMask;
 	public GameObject currentChunk;
-    PlayerAnimationManager pm;
+    public PlayerAnimationManager pm;
 
 	[Header("Optimization")]
 	public List<GameObject> spawnedChunks;
@@ -112,7 +112,8 @@ public class MapController : MonoBehaviour
 		int rand = Random.Range(0, terrainChunks.Count);
 		latestChunk = Instantiate(terrainChunks[rand], noTerrainPosition, Quaternion.identity);
 		spawnedChunks.Add(latestChunk);
-	}
+		latestChunk.SetActive(true);
+    }
 
 	void ChunkOptimzer()
 	{
