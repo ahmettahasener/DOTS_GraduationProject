@@ -247,69 +247,69 @@ public partial struct UpdateGemUISystem : ISystem
     }
 }
 
-public partial struct PlayerWorldUISystem : ISystem
-{
-    public void OnUpdate(ref SystemState state)
-    {
-        var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+//public partial struct PlayerWorldUISystem : ISystem
+//{
+//    public void OnUpdate(ref SystemState state)
+//    {
+//        var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
 
-        // Yeni UI prefab'larýný instantiate etme
-        foreach (var (uiPrefab, entity) in SystemAPI.Query<PlayerWorldUIPrefab>().WithNone<PlayerWorldUI>().WithEntityAccess())
-        {
-            // uiPrefab.Value.Value'nin null olmadýðýndan emin olun
-            if (uiPrefab.Value.Value == null)
-            {
-                Debug.LogWarning($"PlayerWorldUIPrefab for entity {entity} is null. Cannot instantiate UI.");
-                continue; // Bir sonraki entity'ye geç
-            }
+//        // Yeni UI prefab'larýný instantiate etme
+//        foreach (var (uiPrefab, entity) in SystemAPI.Query<PlayerWorldUIPrefab>().WithNone<PlayerWorldUI>().WithEntityAccess())
+//        {
+//            // uiPrefab.Value.Value'nin null olmadýðýndan emin olun
+//            if (uiPrefab.Value.Value == null)
+//            {
+//                Debug.LogWarning($"PlayerWorldUIPrefab for entity {entity} is null. Cannot instantiate UI.");
+//                continue; // Bir sonraki entity'ye geç
+//            }
 
-            var newWorldUI = Object.Instantiate(uiPrefab.Value.Value);
-            ecb.AddComponent(entity, new PlayerWorldUI
-            {
-                CanvasTransform = newWorldUI.transform,
-                HealthBarSlider = newWorldUI.GetComponentInChildren<Slider>()
-            });
-        }
+//            var newWorldUI = Object.Instantiate(uiPrefab.Value.Value);
+//            ecb.AddComponent(entity, new PlayerWorldUI
+//            {
+//                CanvasTransform = newWorldUI.transform,
+//                HealthBarSlider = newWorldUI.GetComponentInChildren<Slider>()
+//            });
+//        }
 
-        // Mevcut UI'larýn pozisyonunu ve saðlýk çubuðunu güncelleme
-        foreach (var (transform, worldUI, currentHitPoints, maxHitPoints) in SystemAPI.Query<LocalToWorld, PlayerWorldUI, CharacterCurrentHitPoints, CharacterMaxHitPoints>())
-        {
-            // Null kontrolü ekle
-            if (worldUI.CanvasTransform.Value == null)
-            {
-                Debug.LogWarning($"PlayerWorldUI for entity with transform at {transform.Position} has a null CanvasTransform. Skipping update.");
-                continue;
-            }
+//        // Mevcut UI'larýn pozisyonunu ve saðlýk çubuðunu güncelleme
+//        foreach (var (transform, worldUI, currentHitPoints, maxHitPoints) in SystemAPI.Query<LocalToWorld, PlayerWorldUI, CharacterCurrentHitPoints, CharacterMaxHitPoints>())
+//        {
+//            // Null kontrolü ekle
+//            if (worldUI.CanvasTransform.Value == null)
+//            {
+//                Debug.LogWarning($"PlayerWorldUI for entity with transform at {transform.Position} has a null CanvasTransform. Skipping update.");
+//                continue;
+//            }
 
-            worldUI.CanvasTransform.Value.position = transform.Position;
-            var healthValue = (float)currentHitPoints.Value / maxHitPoints.Value;
+//            worldUI.CanvasTransform.Value.position = transform.Position;
+//            var healthValue = (float)currentHitPoints.Value / maxHitPoints.Value;
 
-            // Null kontrolü ekle
-            if (worldUI.HealthBarSlider.Value == null)
-            {
-                Debug.LogWarning($"PlayerWorldUI for entity with transform at {transform.Position} has a null HealthBarSlider. Skipping update.");
-                continue;
-            }
-            worldUI.HealthBarSlider.Value.value = healthValue;
-        }
+//            // Null kontrolü ekle
+//            if (worldUI.HealthBarSlider.Value == null)
+//            {
+//                Debug.LogWarning($"PlayerWorldUI for entity with transform at {transform.Position} has a null HealthBarSlider. Skipping update.");
+//                continue;
+//            }
+//            worldUI.HealthBarSlider.Value.value = healthValue;
+//        }
 
-        // LocalToWorld bileþeni olmayan UI'larý temizleme
-        foreach (var (worldUI, entity) in SystemAPI.Query<PlayerWorldUI>().WithNone<LocalToWorld>().WithEntityAccess())
-        {
-            // **Hata alýnan satýr burasý.**
-            // Yok etmeden önce CanvasTransform.Value'nin null olup olmadýðýný kontrol edin.
-            if (worldUI.CanvasTransform.Value != null)
-            {
-                Object.Destroy(worldUI.CanvasTransform.Value.gameObject);
-            }
-            // Eðer CanvasTransform.Value null ise zaten yok edilmiþtir veya hiç oluþturulmamýþtýr, sorun yok.
+//        // LocalToWorld bileþeni olmayan UI'larý temizleme
+//        foreach (var (worldUI, entity) in SystemAPI.Query<PlayerWorldUI>().WithNone<LocalToWorld>().WithEntityAccess())
+//        {
+//            // **Hata alýnan satýr burasý.**
+//            // Yok etmeden önce CanvasTransform.Value'nin null olup olmadýðýný kontrol edin.
+//            if (worldUI.CanvasTransform.Value != null)
+//            {
+//                Object.Destroy(worldUI.CanvasTransform.Value.gameObject);
+//            }
+//            // Eðer CanvasTransform.Value null ise zaten yok edilmiþtir veya hiç oluþturulmamýþtýr, sorun yok.
 
-            ecb.RemoveComponent<PlayerWorldUI>(entity);
-        }
+//            ecb.RemoveComponent<PlayerWorldUI>(entity);
+//        }
 
-        ecb.Playback(state.EntityManager);
-    }
-}
+//        ecb.Playback(state.EntityManager);
+//    }
+//}
 
 public partial struct UpdateHealthUISystem : ISystem
 {

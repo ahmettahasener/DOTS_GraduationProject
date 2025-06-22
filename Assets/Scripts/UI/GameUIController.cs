@@ -17,7 +17,9 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private Button _pauseResumeButton;
     [SerializeField] private Button _pauseQuitButton;
     [SerializeField] private Button _newGameButton;
+    [SerializeField] private Button _fpsButton;
     [SerializeField] private Slider _healthSlider;
+    [SerializeField] private GameObject fpsCanvas;
 
 
     private bool _isPaused = false;
@@ -40,8 +42,9 @@ public class GameUIController : MonoBehaviour
         _quitButton.onClick.AddListener(OnQuitButton);
         _pauseResumeButton.onClick.AddListener(OnResumeButton);
         _pauseQuitButton.onClick.AddListener(OnQuitButton);
-        _inGamePauseButton.onClick.AddListener(ToggleGamePause);
+        _inGamePauseButton.onClick.AddListener(OnInGamePauseButton);
         _newGameButton.onClick.AddListener(OnNewGameButton);
+        _fpsButton.onClick.AddListener(OnFpsButton);
     }
 
     private void OnDisable()
@@ -51,13 +54,15 @@ public class GameUIController : MonoBehaviour
         _pauseQuitButton.onClick.RemoveAllListeners();
         _inGamePauseButton.onClick.RemoveAllListeners();
         _newGameButton.onClick.RemoveAllListeners();
+        _fpsButton.onClick.RemoveAllListeners();
     }
 
-    //private void Start()
-    //{
-    //    _gameOverPanel.SetActive(false);
-    //    _pausePanel.SetActive(false);
-    //}
+    private void Start()
+    {
+        _gameOverPanel.SetActive(false);
+        _pausePanel.SetActive(false);
+        fpsCanvas.SetActive(false);
+    }
 
     public void UpdateHealthBar(float value)
     {
@@ -129,5 +134,17 @@ public class GameUIController : MonoBehaviour
     {
         SetEcsEnabled(true); // ECS sistemlerini tekrar aktif et
         SceneManager.LoadScene(1); // Ana sahneye dönüþ
+    }
+
+    private void OnFpsButton()
+    {
+        if (fpsCanvas.activeSelf)
+        {
+            fpsCanvas.SetActive(false);
+        }
+        else
+        {
+            fpsCanvas.SetActive(true);
+        }
     }
 }
