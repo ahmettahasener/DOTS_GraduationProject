@@ -32,18 +32,21 @@ public class PlayerAnimationManager : MonoBehaviour
     void Update()
     {
         moveAmt = moveAction.ReadValue<Vector2>();
-        if(Mathf.Abs(moveAmt.x) > Mathf.Abs(moveAmt.y))
+        if(Mathf.Abs(moveAmt.x) >= Mathf.Abs(moveAmt.y) && Mathf.Abs(moveAmt.x) > 0)
         {
-            CleanAnim();
-            animator.SetBool("RunSide", true);
-            //if (moveAmt.x > 0)
-            //{
-            //    animator.SetBool("RunSide",true);
-            //}
-            //else if (moveAmt.x <= 0)
-            //{
-            //    animator.SetBool("RunSide", true);
-            //}
+            
+            //animator.SetBool("RunSide", true);
+            if (moveAmt.x > 0)
+            {
+                CleanAnim();
+
+                animator.SetBool("RunSide", true);
+            }
+            else if (moveAmt.x <= 0)
+            {
+                CleanAnim();
+                animator.SetBool("RunSideFlip", true);
+            }
         }
         else if(Mathf.Abs(moveAmt.y) > Mathf.Abs(moveAmt.x))
         {
@@ -71,6 +74,7 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.SetBool("RunUp", false);
         animator.SetBool("RunDown", false);
         animator.SetBool("RunSide", false);
+        animator.SetBool("RunSideFlip", false);
         //animator.SetBool("Idle", false);
     }
 }

@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using Unity.Transforms;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public struct EnemyTag : IComponentData { }
 
@@ -163,4 +164,5 @@ public struct EnemyAttackJob : ICollisionEventsJob
             Value = attackData.HitPoints
         });
     }
+
 }
