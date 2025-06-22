@@ -27,33 +27,62 @@ public struct EnemySpawnState : IComponentData
 
 public class EnemySpawnerAuthoring : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
-    // public GameObject ReaperPrefab; // Reaper kaldýrýldýðý için bu satýr silindi
-    // public float ReaperSpawnTime; // Reaper kaldýrýldýðý için bu satýr silindi
+    public GameObject[] EnemyPrefabs;
+    public float[] SpawnWeights;
     public float SpawnInterval;
     public float SpawnDistance;
     public uint RandomSeed;
+    public float WeightMultiplierPerLevel = 0.25f;
+    public float LevelIncreaseInterval = 30f;
 
     private class Baker : Baker<EnemySpawnerAuthoring>
     {
         public override void Bake(EnemySpawnerAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.None);
-            AddComponent(entity, new EnemySpawnData
+
+            AddComponent(entity, new EnemySpawnControllerData
             {
-                EnemyPrefab = GetEntity(authoring.EnemyPrefab, TransformUsageFlags.Dynamic),
-                // ReaperPrefab = GetEntity(authoring.ReaperPrefab, TransformUsageFlags.Dynamic), // Reaper kaldýrýldýðý için bu satýr silindi
                 SpawnInterval = authoring.SpawnInterval,
                 SpawnDistance = authoring.SpawnDistance
             });
+
             AddComponent(entity, new EnemySpawnState
             {
                 SpawnTimer = 0f,
-                // ReaperSpawnTimer = authoring.ReaperSpawnTime, // Reaper kaldýrýldýðý için bu satýr silindi
                 Random = Random.CreateFromIndex(authoring.RandomSeed)
             });
+
+            AddComponent(entity, new EnemyLevelScalingData
+            {
+                WeightMultiplierPerLevel = authoring.WeightMultiplierPerLevel
+            });
+
+            AddComponent(entity, new GameLevel
+            {
+                Value = 1,
+                Timer = 0f,
+                Interval = authoring.LevelIncreaseInterval
+            });
+
+            var buffer = AddBuffer<EnemyWaveData>(entity);
+            for (int i = 0; i < authoring.EnemyPrefabs.Length; i++)
+            {
+                buffer.Add(new EnemyWaveData
+                {
+                    Prefab = GetEntity(authoring.EnemyPrefabs[i], TransformUsageFlags.Dynamic),
+                    Weight = i < authoring.SpawnWeights.Length ? authoring.SpawnWeights[i] : 1f
+                });
+            }
         }
     }
+}
+
+
+public struct EnemySpawnControllerData : IComponentData
+{
+    public float SpawnInterval;
+    public float SpawnDistance;
 }
 
 public partial struct EnemySpawnSystem : ISystem
@@ -71,74 +100,113 @@ public partial struct EnemySpawnSystem : ISystem
         var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
         var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
 
-        // Player'ýn var olduðundan emin olun
         if (!SystemAPI.HasSingleton<PlayerTag>())
-        {
-            // Eðer oyuncu yoksa düþman spawn etmeyin
             return;
-        }
 
         var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
         var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
 
-        foreach (var (spawnState, spawnData, entity) in SystemAPI.Query<RefRW<EnemySpawnState>, EnemySpawnData>().WithEntityAccess())
+        foreach (var (spawnState, spawnData, entity) in SystemAPI.Query<RefRW<EnemySpawnState>, EnemySpawnControllerData>().WithEntityAccess())
         {
-            // ReaperSpawnTimer ve Reaper ile ilgili tüm mantýk kaldýrýldý
-            /*
-            spawnState.ValueRW.ReaperSpawnTimer -= deltaTime;
-            if (spawnState.ValueRO.ReaperSpawnTimer <= 0f)
-            {
-                if (spawnData.ReaperPrefab == Entity.Null)
-                {
-                    Debug.LogError("ReaperPrefab is null in EnemySpawnData. Cannot instantiate Reaper.");
-                    ecb.DestroyEntity(entity); 
-                    continue;
-                }
-
-                var reaper = ecb.Instantiate(spawnData.ReaperPrefab);
-                var reaperSpawnPoint = playerPosition + new float3(15f, 10f, 0f);
-                ecb.SetComponent(reaper, LocalTransform.FromPositionRotationScale(reaperSpawnPoint, quaternion.identity, 4f));
-
-                var enemyQuery = SystemAPI.QueryBuilder().WithAll<EnemyTag>().Build();
-                var enemies = enemyQuery.ToEntityArray(state.WorldUpdateAllocator);
-                
-                if (enemies.Length > 0)
-                {
-                    foreach (var enemy in enemies)
-                    {
-                        ecb.DestroyEntity(enemy); 
-                    }
-                }
-                enemies.Dispose(); 
-
-                ecb.DestroyEntity(entity); 
-                continue; 
-            }
-            */
+            DynamicBuffer<EnemyWaveData> enemyBuffer = SystemAPI.GetBuffer<EnemyWaveData>(entity);
+            if (enemyBuffer.Length == 0) continue;
 
             spawnState.ValueRW.SpawnTimer -= deltaTime;
             if (spawnState.ValueRO.SpawnTimer > 0f) continue;
             spawnState.ValueRW.SpawnTimer = spawnData.SpawnInterval;
 
-            // Enemy prefab'ýnýn geçerli olduðundan emin olun
-            if (spawnData.EnemyPrefab == Entity.Null)
+            float totalWeight = 0f;
+            foreach (var enemy in enemyBuffer)
+                totalWeight += enemy.Weight;
+
+            float choice = spawnState.ValueRW.Random.NextFloat(0f, totalWeight);
+            Entity chosenPrefab = Entity.Null;
+            float cumulative = 0f;
+
+            foreach (var enemy in enemyBuffer)
             {
-                Debug.LogError("EnemyPrefab is null in EnemySpawnData. Cannot instantiate Enemy.");
+                cumulative += enemy.Weight;
+                if (choice <= cumulative)
+                {
+                    chosenPrefab = enemy.Prefab;
+                    break;
+                }
+            }
+
+            if (chosenPrefab == Entity.Null)
+            {
+                Debug.LogError("No valid enemy prefab selected.");
                 continue;
             }
 
-            var newEnemy = ecb.Instantiate(spawnData.EnemyPrefab);
+            var newEnemy = ecb.Instantiate(chosenPrefab);
             var spawnAngle = spawnState.ValueRW.Random.NextFloat(0f, math.TAU);
-            var spawnPoint = new float3
-            {
-                x = math.sin(spawnAngle),
-                y = math.cos(spawnAngle),
-                z = 0f
-            };
-            spawnPoint *= spawnData.SpawnDistance;
-            spawnPoint += playerPosition;
+            var spawnPoint = new float3(math.sin(spawnAngle), math.cos(spawnAngle), 0f) * spawnData.SpawnDistance + playerPosition;
 
             ecb.SetComponent(newEnemy, LocalTransform.FromPosition(spawnPoint));
         }
     }
 }
+
+
+//different enemies
+[System.Serializable]
+public struct EnemyWaveEntry
+{
+    public Entity Prefab;
+    public float SpawnWeight; // Oran
+}
+
+public struct EnemyWaveData : IBufferElementData
+{
+    public Entity Prefab;
+    public float Weight;
+}
+public struct GameLevel : IComponentData
+{
+    public int Value;
+    public float Timer;
+    public float Interval; // örn: her 30 saniyede bir seviye artýþý
+}
+
+public struct EnemyLevelScalingData : IComponentData
+{
+    public float WeightMultiplierPerLevel; // her seviye için çarpan katsayýsý
+}
+
+[UpdateInGroup(typeof(SimulationSystemGroup))]
+public partial struct LevelProgressionSystem : ISystem
+{
+    public void OnUpdate(ref SystemState state)
+    {
+        var deltaTime = SystemAPI.Time.DeltaTime;
+
+        foreach (var (gameLevel, scalingData, entity) in SystemAPI
+                     .Query<RefRW<GameLevel>, EnemyLevelScalingData>()
+                     .WithEntityAccess())
+        {
+            gameLevel.ValueRW.Timer += deltaTime;
+
+            if (gameLevel.ValueRO.Timer >= gameLevel.ValueRO.Interval)
+            {
+                gameLevel.ValueRW.Value += 1;
+                gameLevel.ValueRW.Timer = 0f;
+
+                var buffer = SystemAPI.GetBuffer<EnemyWaveData>(entity);
+
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    var entry = buffer[i];
+                    entry.Weight *= (1f + scalingData.WeightMultiplierPerLevel);
+                    buffer[i] = entry;
+                }
+
+                Debug.Log($"Level up! New level: {gameLevel.ValueRO.Value}");
+                GameUIController.Instance.UpdateLevelText(gameLevel.ValueRO.Value);
+            }
+        }
+    }
+}
+
+
+

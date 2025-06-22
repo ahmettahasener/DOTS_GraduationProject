@@ -20,6 +20,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private Button _fpsButton;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private GameObject fpsCanvas;
+    [SerializeField] private TMP_Text _levelText;
 
 
     private bool _isPaused = false;
@@ -67,6 +68,11 @@ public class GameUIController : MonoBehaviour
     public void UpdateHealthBar(float value)
     {
         _healthSlider.value = value;
+    }
+
+    public void UpdateLevelText(float value)
+    {
+        _levelText.text = $"Level {value}";
     }
 
     private void Update()

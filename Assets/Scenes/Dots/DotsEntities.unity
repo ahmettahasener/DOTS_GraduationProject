@@ -671,10 +671,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3ed30561a591347b7cf95e12f972ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 2801732151011611217, guid: a61d87d805c80ae4eae9492ffa4db70d, type: 3}
+  EnemyPrefabs:
+  - {fileID: 2801732151011611217, guid: a61d87d805c80ae4eae9492ffa4db70d, type: 3}
+  - {fileID: 2801732151011611217, guid: eae363f98448dea4a8d6f38abe944ea2, type: 3}
+  SpawnWeights:
+  - 5
+  - 1
   SpawnInterval: 0.06
   SpawnDistance: 25
   RandomSeed: 1337
+  WeightMultiplierPerLevel: 0.25
+  LevelIncreaseInterval: 15
 --- !u!4 &1282761205
 Transform:
   m_ObjectHideFlags: 0
