@@ -1522,7 +1522,63 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Enemy-Melee-Death_0: 6718299353097967670
+      Enemy-Melee-Death_1: -6828054304390387729
+      Enemy-Melee-Death_10: 3210717221456541056
+      Enemy-Melee-Death_11: -7062973338977758854
+      Enemy-Melee-Death_12: 1590701607749938798
+      Enemy-Melee-Death_13: 9166178961605049298
+      Enemy-Melee-Death_14: 2140254655572036331
+      Enemy-Melee-Death_15: -2255727383069124265
+      Enemy-Melee-Death_16: 7919783781170997004
+      Enemy-Melee-Death_17: 4678358763543937603
+      Enemy-Melee-Death_18: -7916013912730436701
+      Enemy-Melee-Death_19: 383904204035201354
+      Enemy-Melee-Death_2: -5329505324452849733
+      Enemy-Melee-Death_20: 5259519924244526628
+      Enemy-Melee-Death_21: 9071902807129187145
+      Enemy-Melee-Death_22: -8778611653985690249
+      Enemy-Melee-Death_23: 594173432077603194
+      Enemy-Melee-Death_24: 2008010045436876001
+      Enemy-Melee-Death_25: 2816516706009001475
+      Enemy-Melee-Death_26: -5194452234307909138
+      Enemy-Melee-Death_27: 4627112388406841002
+      Enemy-Melee-Death_28: -5370075626307152688
+      Enemy-Melee-Death_29: 7419248351367501399
+      Enemy-Melee-Death_3: 5722473829376951877
+      Enemy-Melee-Death_30: 4093109190333947523
+      Enemy-Melee-Death_31: -1637898798071755878
+      Enemy-Melee-Death_32: -197396565110994003
+      Enemy-Melee-Death_33: 7355600289677295223
+      Enemy-Melee-Death_34: 1996394406594945824
+      Enemy-Melee-Death_35: -4670429161314881956
+      Enemy-Melee-Death_36: 1081921105231546697
+      Enemy-Melee-Death_37: 714070787367083084
+      Enemy-Melee-Death_38: 5615305976786299889
+      Enemy-Melee-Death_39: -7849354134262983933
+      Enemy-Melee-Death_4: -201101444763475295
+      Enemy-Melee-Death_40: 8230667935479722737
+      Enemy-Melee-Death_41: 8448602965716736769
+      Enemy-Melee-Death_42: 7142181087609096774
+      Enemy-Melee-Death_43: -2942263264296008291
+      Enemy-Melee-Death_44: -2885959321525795816
+      Enemy-Melee-Death_45: 1133659381771320166
+      Enemy-Melee-Death_46: 4490389607016390314
+      Enemy-Melee-Death_47: 1148639926225646969
+      Enemy-Melee-Death_48: -645087104004336717
+      Enemy-Melee-Death_49: -9129201752267351024
+      Enemy-Melee-Death_5: -6812283007049988880
+      Enemy-Melee-Death_50: 740505925058170563
+      Enemy-Melee-Death_51: 9142559039486327716
+      Enemy-Melee-Death_52: -5952788606091645422
+      Enemy-Melee-Death_53: -4367585854490232433
+      Enemy-Melee-Death_54: -6248295222783505710
+      Enemy-Melee-Death_55: 544073855055466405
+      Enemy-Melee-Death_6: 7820481463151730453
+      Enemy-Melee-Death_7: 4936167342987299411
+      Enemy-Melee-Death_8: 5797096692236595549
+      Enemy-Melee-Death_9: 443483040107801126
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

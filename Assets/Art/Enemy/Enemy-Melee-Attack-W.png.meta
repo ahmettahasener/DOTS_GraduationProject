@@ -722,7 +722,31 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Enemy-Melee-Attack-W_0: -2011340669955886617
+      Enemy-Melee-Attack-W_1: 4219773518605571153
+      Enemy-Melee-Attack-W_10: 4629646314055158592
+      Enemy-Melee-Attack-W_11: -6875873690404048636
+      Enemy-Melee-Attack-W_12: 1622791608143766112
+      Enemy-Melee-Attack-W_13: 6252665169199452993
+      Enemy-Melee-Attack-W_14: 5053137842060857499
+      Enemy-Melee-Attack-W_15: -1144462081911306639
+      Enemy-Melee-Attack-W_16: 1219851318674119399
+      Enemy-Melee-Attack-W_17: 1342861198654453925
+      Enemy-Melee-Attack-W_18: 1542445575338666095
+      Enemy-Melee-Attack-W_19: 1277334333406414229
+      Enemy-Melee-Attack-W_2: -2802696491460139160
+      Enemy-Melee-Attack-W_20: -5644856010974032977
+      Enemy-Melee-Attack-W_21: 6921497703659118482
+      Enemy-Melee-Attack-W_22: -8359048685883568403
+      Enemy-Melee-Attack-W_23: 7978174628610367302
+      Enemy-Melee-Attack-W_3: -7479957475624721731
+      Enemy-Melee-Attack-W_4: -2216804617812783023
+      Enemy-Melee-Attack-W_5: 7534570771340971219
+      Enemy-Melee-Attack-W_6: -2455043527849799695
+      Enemy-Melee-Attack-W_7: -2064159003210641599
+      Enemy-Melee-Attack-W_8: -1927316180606879105
+      Enemy-Melee-Attack-W_9: -689373094404021103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

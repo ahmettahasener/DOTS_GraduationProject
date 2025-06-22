@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Enemy-Melee-Idle-NE_0: 6734822267244209174
+      Enemy-Melee-Idle-NE_1: 2950399761101161464
+      Enemy-Melee-Idle-NE_10: -4395500040467578436
+      Enemy-Melee-Idle-NE_11: 5460968088511545614
+      Enemy-Melee-Idle-NE_2: -7153375217402981326
+      Enemy-Melee-Idle-NE_3: -2741523663167980845
+      Enemy-Melee-Idle-NE_4: -5127277176673572707
+      Enemy-Melee-Idle-NE_5: -8966987991491028210
+      Enemy-Melee-Idle-NE_6: 7008507186149313618
+      Enemy-Melee-Idle-NE_7: 9059443155443609891
+      Enemy-Melee-Idle-NE_8: -6265057309875586965
+      Enemy-Melee-Idle-NE_9: -956863606818403726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
