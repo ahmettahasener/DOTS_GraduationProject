@@ -153,4 +153,9 @@ public class GameUIController : MonoBehaviour
             fpsCanvas.SetActive(true);
         }
     }
+
+    private void UpgradePanelUI()
+    {
+
+    }
 }
