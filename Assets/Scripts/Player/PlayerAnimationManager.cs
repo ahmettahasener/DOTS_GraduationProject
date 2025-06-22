@@ -9,9 +9,11 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private InputAction moveAction;
 
-    [SerializeField] private Vector2 moveAmt;
+    public Vector2 moveAmt;
 
     [SerializeField] private Animator animator;
+
+    
 
     private void OnEnable()
     {
@@ -32,6 +34,7 @@ public class PlayerAnimationManager : MonoBehaviour
     void Update()
     {
         moveAmt = moveAction.ReadValue<Vector2>();
+        
         if(Mathf.Abs(moveAmt.x) >= Mathf.Abs(moveAmt.y) && Mathf.Abs(moveAmt.x) > 0)
         {
             

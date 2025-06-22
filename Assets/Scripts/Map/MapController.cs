@@ -11,7 +11,7 @@ public class MapController : MonoBehaviour
 	public Vector3 noTerrainPosition;
 	public LayerMask terrainMask;
 	public GameObject currentChunk;
-	PlayerMovement pm;
+    PlayerAnimationManager pm;
 
 	[Header("Optimization")]
 	public List<GameObject> spawnedChunks;
@@ -25,7 +25,7 @@ public class MapController : MonoBehaviour
 
 	void Start()
 	{
-		pm = FindObjectOfType<PlayerMovement>();
+		pm = FindAnyObjectByType<PlayerAnimationManager>();
 	}
 
 	void Update()
@@ -41,7 +41,7 @@ public class MapController : MonoBehaviour
 			return;
 		}
 
-		if (pm.moveDir.x > 0 && pm.moveDir.y == 0)
+		if (pm.moveAmt.x > 0 && pm.moveAmt.y == 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right").position, checkerRadius, terrainMask))
 			{
@@ -49,7 +49,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.x < 0 && pm.moveDir.y == 0)
+		else if (pm.moveAmt.x < 0 && pm.moveAmt.y == 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left").position, checkerRadius, terrainMask))
 			{
@@ -57,7 +57,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.y > 0 && pm.moveDir.x == 0)
+		else if (pm.moveAmt.y > 0 && pm.moveAmt.x == 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Up").position, checkerRadius, terrainMask))
 			{
@@ -65,7 +65,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.y < 0 && pm.moveDir.x == 0)
+		else if (pm.moveAmt.y < 0 && pm.moveAmt.x == 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Down").position, checkerRadius, terrainMask))
 			{
@@ -73,7 +73,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.x > 0 && pm.moveDir.y > 0)
+		else if (pm.moveAmt.x > 0 && pm.moveAmt.y > 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right Up").position, checkerRadius, terrainMask))
 			{
@@ -81,7 +81,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.x > 0 && pm.moveDir.y < 0)
+		else if (pm.moveAmt.x > 0 && pm.moveAmt.y < 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right Down").position, checkerRadius, terrainMask))
 			{
@@ -89,7 +89,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.x < 0 && pm.moveDir.y > 0)
+		else if (pm.moveAmt.x < 0 && pm.moveAmt.y > 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left Up").position, checkerRadius, terrainMask))
 			{
@@ -97,7 +97,7 @@ public class MapController : MonoBehaviour
 				SpawnChunk();
 			}
 		}
-		else if (pm.moveDir.x < 0 && pm.moveDir.y < 0)
+		else if (pm.moveAmt.x < 0 && pm.moveAmt.y < 0)
 		{
 			if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left Down").position, checkerRadius, terrainMask))
 			{
