@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6453390333815348892}
   - component: {fileID: 8453173318475429634}
   - component: {fileID: 668164173743198284}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2747,7 +2747,7 @@ GameObject:
   - component: {fileID: 4305392566001785823}
   - component: {fileID: 644261606640344166}
   - component: {fileID: 4031888997441571521}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Terrain Chunk 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
