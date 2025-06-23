@@ -904,8 +904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 248475604}
-  chunkSize: 15
-  renderDistance: 3
+  chunkSize: 16
+  renderDistance: 2
 --- !u!4 &237956513
 Transform:
   m_ObjectHideFlags: 0
@@ -2464,21 +2464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4dce4fcc676c54ebdc4af05dd80e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainChunks:
-  - {fileID: 7695225476491494725, guid: 958c7b3e81df62c4992a0698176a0fc2, type: 3}
-  player: {fileID: 248475603}
-  checkerRadius: 0.2
-  noTerrainPosition: {x: 0, y: 0, z: 0}
-  terrainMask:
-    m_Bits: 2048
-  currentChunk: {fileID: 0}
-  pm: {fileID: 0}
-  spawnedChunks: []
-  latestChunk: {fileID: 0}
-  maxOpDist: 0
-  opDist: 0
-  optimizerCooldown: 0
-  optimizerCooldownDur: 0
 --- !u!4 &915595213
 Transform:
   m_ObjectHideFlags: 0
