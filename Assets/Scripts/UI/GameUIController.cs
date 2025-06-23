@@ -23,7 +23,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private GameObject fpsCanvas;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private UpgradeManager _upgradeManager;
-
+    [SerializeField] private Animator playerAnim;
     public int currentCoins;
 
     [System.Serializable]
@@ -137,6 +137,7 @@ public class GameUIController : MonoBehaviour
 
     private IEnumerator ShowGameOverUICoroutine()
     {
+        playerAnim.SetBool("Death",true);
         yield return new WaitForSeconds(1.5f);
         _gameOverPanel.SetActive(true);
     }
