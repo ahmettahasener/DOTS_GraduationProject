@@ -693,9 +693,11 @@ MonoBehaviour:
   EnemyPrefabs:
   - {fileID: 2801732151011611217, guid: a61d87d805c80ae4eae9492ffa4db70d, type: 3}
   - {fileID: 2801732151011611217, guid: eae363f98448dea4a8d6f38abe944ea2, type: 3}
+  - {fileID: 2801732151011611217, guid: 6d0dd2b9a7ad58744b6727d39c0b112f, type: 3}
   SpawnWeights:
   - 5
   - 1
+  - 3
   SpawnInterval: 0.06
   SpawnDistance: 25
   RandomSeed: 1337
