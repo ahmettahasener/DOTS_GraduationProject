@@ -1,78 +1,74 @@
-# DOTS_GraduationProject
-Unity ECS Top-Down Shooter
-Overview
-This project is a top-down shooter game developed using Unity’s Entity Component System (ECS), Physics, and DOTS-based architecture. The goal is to create a performant and modular game where the player survives against waves of enemies, collects gems, and manages cooldowns, animations, and UI interactions.
+# 🎮 Unity ECS Top-Down Shooter
 
-Features
-Entity-Component-System Architecture
-Utilizes Unity ECS for scalable, performant, and data-driven gameplay.
+Welcome to a modular and high-performance **top-down shooter** built with **Unity’s ECS (Entity Component System)** and **DOTS (Data-Oriented Technology Stack)**. This project is a perfect example of scalable gameplay where systems, components, and entities work together to deliver dynamic game mechanics.
 
-Player Mechanics
+---
 
-Movement and directional animation via PlayerInputSystem and PlayerAnimationManager.
+## 🚀 Features
 
-Ranged attack system using PlasmaBlastAuthoring.
+✅ **Entity-Component Architecture**  
+⚙️ Modular systems that separate logic and data for better performance and flexibility.
 
-Health bar and gem collection tracking in real time.
+🎯 **Player Mechanics**
+- WASD or joystick-based movement
+- Direction-based animation
+- Ranged plasma blast attack
+- Health and gem UI integration
 
-Enemy AI
+👾 **Enemy AI**
+- Automatically tracks and moves toward the player
+- Attack with cooldown system
+- Drops gems when defeated
 
-Enemy entities track and move toward the player using EnemyMoveToPlayerSystem.
+💎 **Gem Collection**
+- Pick up system with collision detection
+- Real-time UI update
 
-Attack behavior with cooldown management.
+📷 **Camera System**
+- Smooth player-following using singleton-based camera reference
 
-Enemies drop collectible gems upon death.
+🖥️ **Game UI**
+- Pause/resume system
+- Game over screen
+- Dynamic gem and health UI
 
-Gem Collection System
+---
 
-Gems can be picked up on collision.
+## 📂 Key Components
 
-UI updates the number of gems collected.
+| Script | Description |
+|--------|-------------|
+| `PlayerAuthoring.cs` | Sets up player ECS components and attack logic |
+| `EnemyAuthoring.cs` | Defines enemy behavior and damage logic |
+| `EnemySpawnerAuthoring.cs` | Controls periodic spawning of enemies |
+| `PlasmaBlastAuthoring.cs` | Player's ranged projectile system |
+| `GemAuthoring.cs` | Logic for collectible gems |
+| `DestroyEntitySystem.cs` | Central cleanup system for ECS entities |
+| `GameUIController.cs` | Manages UI interactions, pause/game over |
+| `PlayerAnimationManager.cs` | Controls directional movement animations |
 
-Camera System
+---
 
-Follows the player entity via a singleton-driven CameraTarget.
+## 🛠️ Requirements
 
-UI & Game Management
+- **Unity 2022+**
+- **Entities Package**
+- **Input System Package**
+- **DOTS Physics Enabled**
 
-Pause and resume functionality via GameUIController.
+---
 
-Game over screen when the player dies.
+## ▶️ Getting Started
 
-Dynamic updates to collected gems and health bar.
+1. **Clone** the repository.
+2. **Open** the project in Unity.
+3. **Ensure** all systems (Player, UI, Camera, Enemy, etc.) are placed and referenced correctly in the scene.
+4. Press **Play** and survive as long as you can!
 
-Scripts & Components
-PlayerAuthoring.cs: Sets up player data, camera, and UI references.
+---
 
-EnemyAuthoring.cs: Handles enemy behavior, attack, and gem dropping.
+## 📜 License
 
-EnemySpawnerAuthoring.cs: Controls spawn logic and timing around the player.
+This project is created for educational and demonstration purposes.
 
-PlasmaBlastAuthoring.cs: Defines player attacks with expiration and collision logic.
-
-GemAuthoring.cs: Manages gem behavior and collection system.
-
-DestroyEntitySystem.cs: Handles safe removal of entities like enemies, gems, and projectiles.
-
-GameUIController.cs: Manages UI states such as pause, game over, and collected gem count.
-
-PlayerAnimationManager.cs: Handles animation based on input direction.
-
-Requirements
-Unity 2022 or later with Entities package
-
-Input System enabled
-
-DOTS Physics enabled
-
-Getting Started
-Clone the repository.
-
-Open the project in Unity.
-
-Set up the scene with required GameObjects and authoring components.
-
-Press Play and start the game.
-
-License
-This project is for educational and demonstration purposes.
+---
