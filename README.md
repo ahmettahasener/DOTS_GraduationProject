@@ -4,6 +4,8 @@ Welcome to a modular and high-performance **top-down shooter** built with **Unit
 
 
 ![image](https://github.com/user-attachments/assets/4215138d-9eb9-45d3-ad5f-41e4f1239333)
+![image](https://github.com/user-attachments/assets/f043d57f-9365-4a80-a8f8-907f32ab49d2)
+
 
 
 <h2 align="center">🎥 Gameplay Video</h2>
