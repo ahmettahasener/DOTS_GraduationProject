@@ -10,7 +10,7 @@ Welcome to a modular and high-performance **top-down shooter** built with **Unit
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=UyF7lLAoHXM" target="_blank">
-    <img src="https://img.youtube.com/vi/UyF7lLAoHXM/0.jpg" alt="Watch the video" width="640" />
+    <img src="https://img.youtube.com/vi/UyF7lLAoHXM/0.jpg" alt="Watch the video"  />
   </a>
 </p>
 
