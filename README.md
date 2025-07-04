@@ -2,6 +2,10 @@
 
 Welcome to a modular and high-performance **top-down shooter** built with **Unity’s ECS (Entity Component System)** and **DOTS (Data-Oriented Technology Stack)**. This project is a perfect example of scalable gameplay where systems, components, and entities work together to deliver dynamic game mechanics.
 
+
+![image](https://github.com/user-attachments/assets/4215138d-9eb9-45d3-ad5f-41e4f1239333)
+
+
 <h2 align="center">🎥 Gameplay Video</h2>
 
 <p align="center">
