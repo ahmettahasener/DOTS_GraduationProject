@@ -1,6 +1,8 @@
 # 🎮 Unity ECS Top-Down Shooter
 
 Welcome to a modular and high-performance **top-down shooter** built with **Unity’s ECS (Entity Component System)** and **DOTS (Data-Oriented Technology Stack)**. This project is a perfect example of scalable gameplay where systems, components, and entities work together to deliver dynamic game mechanics.
+[🎥 Watch Gameplay Video on YouTube](https://www.youtube.com/watch?v=UyF7lLAoHXM)
+
 
 ---
 
