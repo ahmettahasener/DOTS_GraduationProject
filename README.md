@@ -1,4 +1,4 @@
-# 🎮 Unity ECS Top-Down Shooter
+#  Unity ECS Top-Down Shooter
 
 Welcome to a modular and high-performance **top-down shooter** built with **Unity’s ECS (Entity Component System)** and **DOTS (Data-Oriented Technology Stack)**. This project is a perfect example of scalable gameplay where systems, components, and entities work together to deliver dynamic game mechanics.
 
@@ -20,37 +20,37 @@ Welcome to a modular and high-performance **top-down shooter** built with **Unit
 
 ---
 
-## 🚀 Features
+##  Features
 
-✅ **Entity-Component Architecture**  
-⚙️ Modular systems that separate logic and data for better performance and flexibility.
+ **Entity-Component Architecture**  
+ Modular systems that separate logic and data for better performance and flexibility.
 
-🎯 **Player Mechanics**
+ **Player Mechanics**
 - WASD or joystick-based movement
 - Direction-based animation
 - Ranged plasma blast attack
 - Health and gem UI integration
 
-👾 **Enemy AI**
+ **Enemy AI**
 - Automatically tracks and moves toward the player
 - Attack with cooldown system
 - Drops gems when defeated
 
-💎 **Gem Collection**
+ **Gem Collection**
 - Pick up system with collision detection
 - Real-time UI update
 
-📷 **Camera System**
+ **Camera System**
 - Smooth player-following using singleton-based camera reference
 
-🖥️ **Game UI**
+ **Game UI**
 - Pause/resume system
 - Game over screen
 - Dynamic gem and health UI
 
 ---
 
-## 📂 Key Components
+##  Key Components
 
 | Script | Description |
 |--------|-------------|
@@ -65,7 +65,7 @@ Welcome to a modular and high-performance **top-down shooter** built with **Unit
 
 ---
 
-## 🛠️ Requirements
+##  Requirements
 
 - **Unity 2022+**
 - **Entities Package**
@@ -74,17 +74,11 @@ Welcome to a modular and high-performance **top-down shooter** built with **Unit
 
 ---
 
-## ▶️ Getting Started
+##  Getting Started
 
 1. **Clone** the repository.
 2. **Open** the project in Unity.
 3. **Ensure** all systems (Player, UI, Camera, Enemy, etc.) are placed and referenced correctly in the scene.
 4. Press **Play** and survive as long as you can!
-
----
-
-## 📜 License
-
-This project is created for educational and demonstration purposes.
 
 ---
